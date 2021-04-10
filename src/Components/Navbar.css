@@ -18,6 +18,7 @@
     margin-right: 30px;
     border-radius: 50%;
     height: 35px;
+    width: 35px;
 }
 .Navbar__username{
     font-size: 1.2rem;
@@ -35,4 +36,12 @@
     padding-top: 15px;
     color: #ffffff9f;
     text-transform: uppercase;
+}
+@media only screen and (max-width: 500px) {
+    .Navbar{
+        justify-content:center;
+    }
+    .Navbar__profilepicture{
+        margin-right: -15px;
+    }
 }

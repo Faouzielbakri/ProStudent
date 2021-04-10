@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import './Addcours.css'
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import { useState } from 'react';
@@ -37,6 +37,8 @@ function Addcours() {
       
       async function createRecord(task) {
         var metadatafordb = {
+          filename:document?.name,
+          coursName:formdata?.coursname ,
           path: task.snapshot.metadata.fullPath,
           dateOfUpload: format(new Date(),'PPpp'),
           className: formdata?.classname,
@@ -55,10 +57,11 @@ function Addcours() {
                  ;
                 data.collection("Courses").add({ ...metadatafordb });
                 try {
-                  db.collection("uuid")
-                    .doc(randomUid.toString())
+                  const uuidRef = db.collection("uuid");
+                    uuidRef.doc(randomUid.toString())
                     .set({ classuid: data.id, profuid: user.uid });
                   console.log("Document successfully written! : ",data.id);
+                
                 } catch (error) {
                   console.error("Error writing document: ", error);
                 }
@@ -73,10 +76,15 @@ function Addcours() {
               .add({ ...metadatafordb });
             // console.log("Class exists");
             try {
-              db.collection("uuid")
-                .doc(randomUid.toString())
+              const uuidRef = db.collection("uuid");
+              if(!uuidRef.where('classuid','==',classid).get().exists) 
+              {
+                console.log("no need for random code")
+              }else{
+                uuidRef.doc(randomUid.toString())
                 .set({ classuid: classid, profuid: user.uid });
               console.log("Document successfully written! : ",classid);
+            }
             } catch (error) {
               console.error("Error writing document: ", error);
             }
@@ -88,8 +96,7 @@ function Addcours() {
      
       }
     return (
-        <div className="Addcours">
-            
+        <Grid    className="Addcours">
             <form className="Addcours__form" onSubmit={e => {e.preventDefault(); UploadFile(document)}}>
                 <div className="Addcours__formelement">
                     <label htmlFor="classname">Class name</label>
@@ -135,7 +142,7 @@ function Addcours() {
                 </div>
                 <Button id="Uploadbutton" variant="contained" type="submit">Upload File</Button>
             </form>
-        </div>
+        </Grid>
     )
 }
 

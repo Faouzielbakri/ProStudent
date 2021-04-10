@@ -1,0 +1,88 @@
+.Courses{
+    font-family: raleway ;
+    background-color: #e8eaf9;
+    /* align-self: center; */
+    margin: 10px;
+    min-width: 700px;
+    min-height:50px;
+    display:flex;
+    flex-direction:column;
+    font-weight: 500;
+    padding: 10px 0px;
+    border-radius:5px;
+    flex: 1;
+}
+.Courses__docs{
+    flex: 1;
+    background-color:#ffffff;
+    margin: 5px 15px;
+    display:flex;
+    justify-content: space-between;
+    padding: 1rem 0.5rem;
+    border-radius: 0.5rem;
+    gap: 1rem;
+    align-items: center;
+}
+.Courses__docsFilename{
+    flex: 1;
+    color: gray;
+    text-align:left;
+}
+.Courses__docsTitle{
+    margin-left: 0.8rem;
+}
+.Courses__docsDateOfupload,
+.Courses__docsClassname{
+    color: gray;
+}
+
+.Courses__docsTitle{
+    font-size:1.2rem;
+    font-weight: 600;
+}
+.Courses_separator{
+    width: 0px;
+    height: 25px;
+    border-left: 1px solid #999;
+    border-radius: 50%;
+    
+}
+#downloadIcon,#VisibiltyIcon{
+    color: #A49BDA;
+}
+
+#VisibiltyIcon{
+    margin-right: 0.5rem;
+}
+.Courses > h3{
+    color: #9f9f9f;
+    align-self: center;
+    font-family: raleway;
+    font-size:2rem;
+    font-style: italic;
+    font-weight: 800;
+    margin: 3px 0px;
+}
+@media only screen and (max-width: 1000px) {
+    .Courses {
+      min-width: 0px;
+      width: 100%;
+      margin: 0;
+    }
+    .Courses > h3{
+        font-size:1.5rem;
+    }
+    .Courses__docsTitle{
+        font-size:0.8rem;
+        margin-left: 0.2rem;
+    }
+    .Courses__docsFilename,.Courses__docsClassname,.Courses__docsDateOfupload{
+        font-size:0.7rem;
+    }
+    #downloadIcon,#VisibiltyIcon{
+        font-size:1.2rem
+    }
+    .Courses__docs{
+        gap:0.5rem
+    }
+  }

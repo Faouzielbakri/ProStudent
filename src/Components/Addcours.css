@@ -1,14 +1,14 @@
 .Addcours{
     display:flex;
     flex-direction:column;
-    max-width: 400px;
+    width: 25%;
+    min-width: 300px;
     align-items:center;
-    margin-top: 200px;
     font-family: raleway ;
     font-style: italic;
     font-weight: 500;
+    margin: 10px;
 }
-
 .Addcours__form{
     display:flex;
     flex-direction:column;
@@ -64,9 +64,20 @@
     overflow: hidden;
 }
 #Uploadbutton{
-    width: 40%;
+    width: 150px;
     align-self: center;
     background-color: #A49BDA;
     margin-top:25px;
     color: #fff;
+}
+@media only screen and (max-width: 1000px) {
+    .Addcours{
+        /* width: 90%; */
+        align-self: center;
+    }
+    .Addcours__form{
+        margin: 0 0;
+        padding: 0.9rem 0.5rem 0.9rem 0.5rem;
+    }
+    
 }
