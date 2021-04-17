@@ -1,0 +1,182 @@
+body {
+  background: -webkit-linear-gradient(180deg, var(--lightmain), #fff);
+  background: linear-gradient(
+    180deg,
+    var(--lightsecondary),
+    rgb(248, 193, 255)
+  );
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  font-family: "Raleway", sans-serif;
+  color: #151515;
+}
+a {
+  color: black;
+  font-weight: 600;
+  font-size: 0.85em;
+  text-decoration: none;
+}
+label {
+  color: black;
+  font-weight: 600;
+  font-size: 0.85em;
+}
+input:focus {
+  outline: none;
+}
+
+.form {
+  display: flex;
+  width: clamp(300px, 55vw, 625px);
+  background: #fff;
+  margin: 15px;
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: 0px 10px 25px 5px #6e62620f;
+  transition: 0.1s margin height;
+}
+.sign-in-section {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: 0.1s padding;
+}
+.sign-in-section h6 {
+  margin-top: 0px;
+  font-size: 0.75em;
+}
+.sign-in-section h1 {
+  text-align: center;
+  font-weight: 700;
+  position: relative;
+}
+.sign-in-section h1:after {
+  position: absolute;
+  content: "";
+  height: 5px;
+  bottom: -15px;
+  margin: 5px auto;
+  left: 0;
+  right: 0;
+  width: 40px;
+  background: #7f00ff;
+  background: -webkit-linear-gradient(to right, #e100ff, #7f00ff);
+  background: linear-gradient(to right, #e100ff, #7f00ff);
+  -o-transition: 0.25s;
+  -ms-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -webkit-transition: 0.25s;
+  transition: 0.4s;
+}
+.sign-in-section h1:hover:after {
+  width: 200px;
+}
+.sign-in-section ul {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  text-align: center;
+}
+.sign-in-section ul > li {
+  display: inline-grid;
+  padding: 2px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0px 3px 1px #0000000f;
+  border: 1px solid #e2e2e2;
+  cursor: pointer;
+}
+#arrow-back {
+  margin: 30px 0px -20px 0px;
+  border-radius: 50%;
+  box-shadow: 0px 3px 1px #0000000f;
+  border: 1px solid #e2e2e2;
+  cursor: pointer;
+}
+.sign-in-section p {
+  text-align: center;
+  font-size: 0.85em;
+}
+.form-field {
+  display: block;
+  width: clamp(300px, 45vw, 550px);
+  margin: 10px auto;
+}
+.btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-around;
+}
+.form-field label {
+  display: block;
+  margin-bottom: 10px;
+}
+.form-field input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: -webkit-fill-available;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #e8e8e8;
+  width: 90%;
+}
+.form-field input::placeholder {
+  color: #e8e8e8;
+}
+.form-field input:focus {
+  border: 1px solid #ae00ff;
+}
+.btn {
+  padding: 15px;
+  font-size: 1em;
+  width: clamp(150px, 100%, 200px);
+  border-radius: 25px;
+  border: none;
+  margin: 20px 0px;
+}
+.btn-signup {
+  cursor: pointer;
+  background: #7f00ff;
+  text-align: center;
+  width: clamp(150px, 100%, 200px);
+  background: -webkit-linear-gradient(
+    to right,
+    #7f00ff,
+    var(--lightmain),
+    #7f00ff
+  );
+  background: linear-gradient(to right, #7f00ff, var(--lightmain), #7f00ff);
+  box-shadow: 0px 5px 15px 5px #840fe440;
+  color: #fff;
+}
+.btn-signin {
+  cursor: pointer;
+
+  background: #7f00ff;
+  background: -webkit-linear-gradient(to right, #7f00ff, #e100ff, #e100ff);
+  background: linear-gradient(to right, #e100ff, #e943ff, #e100ff);
+  box-shadow: 0px 5px 15px 5px #840fe440;
+  color: #fff;
+}
+.links a:nth-child(1) {
+  float: left;
+}
+.links a:nth-child(2) {
+  float: right;
+}
+@media only screen and (max-width: 1130px) {
+  .form {
+    margin: 0;
+    padding: 0 25px;
+  }
+  .sign-in-section {
+    padding: 0;
+  }
+}

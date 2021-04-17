@@ -1,0 +1,69 @@
+.Courses__docs {
+  flex: 1;
+  background-color: #ffffff;
+  margin: 5px 15px;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
+  border-radius: 0.5rem;
+  gap: 1rem;
+  align-items: center;
+}
+.Courses__docsNote {
+  flex: 1;
+  color: gray;
+  text-align: left;
+}
+.Courses__docsTitle {
+  margin-left: 0.8rem;
+}
+.Courses__docsDateOfupload,
+.Courses__docsClassname {
+  color: gray;
+}
+
+.Courses__docsTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.Courses_separator {
+  width: 0px;
+  height: 25px;
+  border-left: 1px solid #999;
+  border-radius: 50%;
+}
+#downloadIcon,
+#VisibiltyIcon {
+  color: #a49bda;
+}
+
+#VisibiltyIcon {
+  margin-right: 0.5rem;
+}
+.Courses__docsCode {
+  color: var(--lightmain);
+}
+@media only screen and (max-width: 1130px) {
+  .Courses__docsTitle {
+    font-size: 0.8rem;
+    margin-left: 0.2rem;
+  }
+  .Courses__docsNote,
+  .Courses__docsClassname,
+  .Courses__docsDateOfupload {
+    font-size: 0.7rem;
+  }
+  #downloadIcon,
+  #VisibiltyIcon {
+    font-size: 1.2rem;
+  }
+  .Courses__docs {
+    gap: 0.5rem;
+  }
+  .Courses__docsNote {
+    display: none;
+  }
+  .Courses > div > div:nth-child(2) {
+    display: none;
+  }
+}

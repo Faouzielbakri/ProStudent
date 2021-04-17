@@ -1,83 +1,82 @@
-.Addcours{
-    display:flex;
-    flex-direction:column;
-    width: 25%;
-    min-width: 300px;
-    align-items:center;
-    font-family: raleway ;
-    font-style: italic;
-    font-weight: 500;
-    margin: 10px;
+.Addcours {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  min-width: 300px;
+  align-items: center;
+  font-family: raleway;
+  font-style: italic;
+  font-weight: 500;
+  margin: 10px;
 }
-.Addcours__form{
-    display:flex;
-    flex-direction:column;
-    background-color:#e8eaf9;
-    /* gap: 10px; */
-    justify-content:flex-start;
-    padding: 40px 15px;
-    width: 100%;
-    margin-left: 10%;
-    border-radius:5px
+.Addcours__form {
+  display: flex;
+  flex-direction: column;
+  background-color: #e8eaf9;
+  /* gap: 10px; */
+  justify-content: flex-start;
+  padding: 40px 15px;
+  width: 100%;
+  margin-left: 10%;
+  border-radius: 5px;
 }
-.Addcours__formelement{
-    display:flex;
-    gap: 10px;
-    justify-content:center;
-    align-items:center;
+.Addcours__formelement {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 .Addcours__formelement > input {
-    flex: 1;
-    height: 20px;
-    margin: 10px 0px 15px 5px;
-    border: 0px;
-    padding: 5px 0px;
-    text-indent: 10px;
-    border-radius: 5px;
-    /* box-shadow: 0 0 1px 1px  #bfb4ff; */
-    transition:.3s all;
+  flex: 1;
+  height: 20px;
+  margin: 10px 0px 15px 5px;
+  border: 0px;
+  padding: 5px 0px;
+  text-indent: 10px;
+  border-radius: 5px;
+  /* box-shadow: 0 0 1px 1px  #bfb4ff; */
+  transition: 0.3s all;
 }
-.Addcours__formelement > input:focus{
-    border: 0px;
-    outline: none;
-    /* box-shadow: 0 0 1px 1px #A49BDA; */
-    width: 95%;
+.Addcours__formelement > input:focus {
+  border: 0px;
+  outline: none;
+  /* box-shadow: 0 0 1px 1px #A49BDA; */
+  width: 95%;
 }
-#file{
-    background-color: #A49BDA;
-    border-radius: 15px;
-    width: 30px;
-    height: 25px;
-    place-self: flex-start;
-    margin-left: 2%;
+#file {
+  background-color: #a49bda;
+  border-radius: 15px;
+  width: 30px;
+  height: 25px;
+  place-self: flex-start;
+  margin-left: 2%;
 }
-.fileinput{
-    display:flex;
-    align-items: center;
-    margin-top: 5px;
-    /* gap: 20px; */
+.fileinput {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  /* gap: 20px; */
 }
-.filename{
-    margin-left: 10px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+.filename {
+  margin-left: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-#Uploadbutton{
-    width: 150px;
+#Uploadbutton {
+  width: 150px;
+  align-self: center;
+  background-color: #a49bda;
+  margin-top: 25px;
+  color: #fff;
+}
+@media only screen and (max-width: 1130px) {
+  .Addcours {
+    /* width: 90%; */
     align-self: center;
-    background-color: #A49BDA;
-    margin-top:25px;
-    color: #fff;
-}
-@media only screen and (max-width: 1000px) {
-    .Addcours{
-        /* width: 90%; */
-        align-self: center;
-    }
-    .Addcours__form{
-        margin: 0 0;
-        padding: 0.9rem 0.5rem 0.9rem 0.5rem;
-    }
-    
+  }
+  .Addcours__form {
+    margin: 0 0;
+    padding: 0.9rem 0.5rem 0.9rem 0.5rem;
+  }
 }

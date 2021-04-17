@@ -1,47 +1,54 @@
-.Navbar{
-    position: sticky;
-    display:flex;
-    width: 95vw;
-    background-color: #3525A2;
-    height: 50px;
-    top: 0;
-    margin-right: auto;
-    margin-left: auto;
-    Justify-content:flex-end;
-    align-items: center;
-    gap: 30px;
-    border-radius: 0px 0px 1rem 1rem;
-    font-family: raleway;
-    color: #fff;
+.Navbar {
+  position: sticky;
+  display: flex;
+  width: 95vw;
+  background-color: #3525a2;
+  height: 50px;
+  top: 0;
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  border-radius: 0px 0px 1rem 1rem;
+  font-family: raleway;
+  color: #fff;
 }
-.Navbar__profilepicture{
-    margin-right: 30px;
-    border-radius: 50%;
-    height: 35px;
-    width: 35px;
+.Navbar__profilepicture {
+  margin-left: 20px;
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  border: 1px solid #fff;
 }
-.Navbar__username{
-    font-size: 1.2rem;
-    font-weight:600;
-    margin-right: -15px;
+.Navbar__username {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-right: -5px;
 }
-.Navbar_separator{
-    width: 0px;
-    height: 80%;
-    border-left: 2px solid #fff;
-    border-radius: 50%;
+.Navbar_separator {
+  width: 0px;
+  height: 80%;
+  border-left: 2px solid #fff;
+  border-radius: 50%;
 }
-.Navbar__speaciality{
-    margin-left: -15px;
-    padding-top: 15px;
-    color: #ffffff9f;
-    text-transform: uppercase;
+.Navbar__speaciality {
+  margin-left: -10px;
+  padding-top: 15px;
+  color: #ffffff9f;
+  text-transform: uppercase;
+}
+#Navbar__Singout {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-left: auto;
+  margin-right: 1rem;
 }
 @media only screen and (max-width: 500px) {
-    .Navbar{
-        justify-content:center;
-    }
-    .Navbar__profilepicture{
-        margin-right: -15px;
-    }
+  .Navbar {
+    justify-content: center;
+  }
+  .Navbar__profilepicture {
+    margin-left: 10px;
+  }
 }

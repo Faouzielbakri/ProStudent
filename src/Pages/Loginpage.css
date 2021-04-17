@@ -1,0 +1,66 @@
+:root {
+  --lightmain: #9400ff;
+  --lightsecondary: #a49bda;
+}
+.Loginpage {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  font-family: raleway;
+}
+.Loginpage > form {
+  display: flex;
+  flex-direction: column;
+  width: clamp(347px, 85vw, 550px);
+  padding: 2rem 1rem;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--lightmain);
+}
+.form__controlInput > label {
+  font-family: raleway !important;
+  color: azure;
+}
+.form__controlInput {
+  background-color: transparent;
+}
+#my-helper-text {
+  margin-left: 5px;
+  color: azure;
+}
+#Sign-up_Button {
+  color: #fff;
+  border: 1px solid var(--lightsecondary);
+}
+.form__control {
+  width: 90%;
+  align-self: center;
+}
+
+#Sign-up__Button {
+  font-family: raleway !important;
+  width: 50%;
+  /* margin-top: 1rem; */
+  color: azure;
+}
+.Submit__part {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  align-self: center;
+}
+.Submit__part > span {
+  flex: 1;
+  text-align: center;
+  color: #fff;
+}
+
+#Sign__Google > span > span {
+  font-family: raleway !important;
+  color: #fff;
+}
+#Sign__Google > span > img {
+  margin-right: 5px;
+}

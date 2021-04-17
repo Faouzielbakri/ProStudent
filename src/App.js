@@ -5,38 +5,29 @@ import Mainpage from "./Pages/Mainpage";
 import Loginpage from "./Pages/Loginpage";
 import { auth, googleProvider } from "./backend/firebase";
 import store from "./backend/store";
-
+import * as actions from "./backend/actions";
 function App() {
-  const [user, setuser] = useState(store.getState());
-  const signin = () => {
-    auth.signInWithRedirect(googleProvider);
-  };
-  const singout = () => {
-    auth
-      .signOut()
-      .then(() => {
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        // An error happened.
-      });
-  };
+  const [user, setuser] = useState(store.getState().user);
+  store.subscribe(() => {
+    setuser(store.getState().user);
+  });
+
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
+    return auth.onAuthStateChanged((user) => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
+        // const currentuser = auth.currentUser;
+        console.log(user.providerData[0]);
+        // User is signed in
+        // setuser(user.providerData[0]);
         store.dispatch({
-          type: "",
-          payload: {
-            user: {},
-          },
+          type: actions.SIGNIN,
+          payload: { user: user.providerData[0] },
         });
-        // ...
       } else {
         // User is signed out
-        // ...
-        setuser(null);
+        store.dispatch({
+          type: actions.LOGOUT,
+        });
       }
     });
     // console.log(user);
@@ -45,29 +36,51 @@ function App() {
 
   return (
     <Router>
-      <Switch>
-        <Route path="/login">
-          <Loginpage />
-          <button
-            onClick={() => {
-              signin();
-            }}
-          >
-            login
-          </button>
-          <button
-            onClick={() => {
-              singout();
-            }}
-          >
-            singout
-          </button>
-        </Route>
-        <Route path="/">
-          <Mainpage />
-        </Route>
-      </Switch>
+      {!user ? (
+        <Loginpage signup={createNewUser} SignWithGoogle={SignWithGoogle} />
+      ) : (
+        <Switch>
+          <Route path="/">
+            <Mainpage />
+          </Route>
+        </Switch>
+      )}
     </Router>
   );
 }
 export default App;
+export function SignWithGoogle() {
+  auth.signInWithRedirect(googleProvider);
+}
+export function createNewUser(info) {
+  console.error("hello");
+  auth
+    .createUserWithEmailAndPassword(info.email, info.SIGNINpass)
+    .then(() => {
+      console.error("hello");
+      const currentuser = auth.currentUser;
+      currentuser
+        .updateProfile({
+          displayName: info.name,
+        })
+        .then(function () {
+          // Update successful.
+          store.dispatch({
+            type: actions.SIGNIN,
+            payload: {
+              user: {
+                ...currentuser,
+                displayName: info.name,
+              },
+            },
+          });
+        })
+        .catch(function (error) {
+          alert(error.message);
+        });
+    })
+    .catch((error) => {
+      console.error("hello");
+      alert(error.message);
+    });
+}
