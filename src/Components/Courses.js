@@ -2,18 +2,20 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { db } from "../backend/firebase";
 import "./Courses.css";
-
+import LoadingSvg from "../media/loading.gif";
 import { Grid } from "@material-ui/core";
 import { CoursBar } from "./CoursBar.js";
 
 function Courses({ user, setuser }) {
   const [items, setItems] = useState([]);
+  const [isfetching, setIsfetching] = useState(false);
 
   //Use Effect to get all the courses managed by the Current user
   useEffect(() => {
+    setIsfetching(true);
     const classesRef = db
       .collection("Prof")
-      .doc(user.uid?.toString())
+      .doc(user?.uid?.toString())
       .collection("Classes");
     classesRef.onSnapshot((snapshot) => {
       var tempitems = [];
@@ -30,7 +32,7 @@ function Courses({ user, setuser }) {
                 })
               ),
             ];
-            console.table("before", tempitems[3].id, tempitems[3].data.visible);
+            // console.table("before", tempitems[3].id, tempitems[3].data.visible);
             tempitems = tempitems.reverse().filter((item, index, self) => {
               if (index === self.findIndex((t) => t.id === item.id)) {
                 return true;
@@ -39,11 +41,12 @@ function Courses({ user, setuser }) {
             });
 
             setItems([...tempitems]);
-            console.table(tempitems[3].id, tempitems[3].data.visible);
+            // console.table(tempitems[3].id, tempitems[3].data.visible);
           });
         return docu.id;
       });
     });
+    setIsfetching(false);
     // eslint-disable-next-line
   }, []);
   // eslint-disable-next-line
@@ -81,6 +84,7 @@ function Courses({ user, setuser }) {
       {items.map((doc) => (
         <CoursBar key={`${doc.id}`} doc={doc} code={doc.code} />
       ))}
+      {isfetching && <img src={LoadingSvg} alt="loading" />}
     </Grid>
   );
 }

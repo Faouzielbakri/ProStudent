@@ -106,6 +106,7 @@ function Addcours({ user, setuser }) {
             name="classname"
             type="text"
             value={formdata?.classname || ""}
+            placeholder="Must be unique name for each Class"
             required
             onChange={(e) =>
               setFormdata({ ...formdata, classname: e.target.value })

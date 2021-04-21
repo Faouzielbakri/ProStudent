@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./signup.css";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import { createNewUser, SignWithGoogle } from "./../App";
+import { createNewUser, SignWithGoogle, SignWithEmail } from "./../App";
 function SigninForm() {
   const [switcher, setswitcher] = useState(false);
   const [info, setInfo] = useState({});
@@ -97,6 +97,15 @@ function SigninForm() {
           )}
           <div class="form-field btns">
             <button
+              type="submit"
+              class="btn btn-signin"
+              onClick={() => {
+                SignWithEmail(info);
+              }}
+            >
+              Log In
+            </button>
+            <button
               class="btn btn-signup"
               onClick={() => {
                 if (info.password && info.email) {
@@ -109,9 +118,6 @@ function SigninForm() {
               }}
             >
               Sign Up
-            </button>
-            <button type="submit" class="btn btn-signin" disabled>
-              Log In{" "}
             </button>
           </div>
         </form>

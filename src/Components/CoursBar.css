@@ -8,7 +8,9 @@
   border-radius: 0.5rem;
   gap: 1rem;
   align-items: center;
+  transition: all 0.1s;
 }
+
 .Courses__docsNote {
   flex: 1;
   color: gray;
@@ -42,6 +44,9 @@
 }
 .Courses__docsCode {
   color: var(--lightmain);
+}
+.Courses__docs:hover {
+  font-size: large;
 }
 @media only screen and (max-width: 1130px) {
   .Courses__docsTitle {

@@ -9,6 +9,7 @@
   font-weight: 500;
   margin: 10px;
 }
+
 .Addcours__form {
   display: flex;
   flex-direction: column;
@@ -19,6 +20,7 @@
   width: 100%;
   margin-left: 10%;
   border-radius: 5px;
+  box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
 }
 .Addcours__formelement {
   display: flex;

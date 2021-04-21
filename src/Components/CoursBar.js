@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@material-ui/core";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import VisibilityIcon from "@material-ui/icons/Visibility";
@@ -8,7 +8,7 @@ import { db, storage } from "../backend/firebase";
 import "./CoursBar.css";
 import store from "./../backend/store";
 const CoursBar = ({ doc, code }) => {
-  const [state, setstate] = useState("");
+  const [RandomCode, setRandomCode] = useState("");
   const Downloadfile = (path) => {
     storage
       .ref(path)
@@ -52,9 +52,10 @@ const CoursBar = ({ doc, code }) => {
       .get()
       .then((params) => {
         params.forEach((doc) => {
-          setstate(doc.id);
+          setRandomCode(doc.id);
           return doc.id;
         });
+        // animatedDiv.togglePresence();
       });
     if (snapshot.empty) {
       console.log("No matching documents.");
@@ -73,14 +74,16 @@ const CoursBar = ({ doc, code }) => {
       .update({ visible: theBoolean });
     // console.log(doc);
   };
+  useEffect(() => {
+    getCode(code);
+  }, []);
   return (
     <div className="Courses__docs">
-      {getCode(code)}
       <span className="Courses__docsTitle">{doc.data.coursName}</span>
       <div className="Courses_separator" />
       <span className="Courses__docsNote">{doc.data.note}</span>
       <div className="Courses_separator" />
-      <span className="Courses__docsCode">{state}</span>
+      <span className="Courses__docsCode">{RandomCode}</span>
       <div className="Courses_separator" />
       <span className="Courses__docsClassname">{doc.data.className}</span>
       <div className="Courses_separator" />

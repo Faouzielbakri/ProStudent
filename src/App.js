@@ -6,8 +6,10 @@ import Loginpage from "./Pages/Loginpage";
 import { auth, googleProvider } from "./backend/firebase";
 import store from "./backend/store";
 import * as actions from "./backend/actions";
+import Profilepage from "./Pages/Profilepage";
 function App() {
   const [user, setuser] = useState(store.getState().user);
+
   store.subscribe(() => {
     setuser(store.getState().user);
   });
@@ -16,7 +18,8 @@ function App() {
     return auth.onAuthStateChanged((user) => {
       if (user) {
         // const currentuser = auth.currentUser;
-        console.log(user.providerData[0]);
+
+        // console.log(isfetching, user.providerData[0]);
         // User is signed in
         // setuser(user.providerData[0]);
         store.dispatch({
@@ -31,15 +34,20 @@ function App() {
       }
     });
     // console.log(user);
+    //eslint-disable-next-line
   }, []);
   // [END auth_state_listener]
-
+  console.log(user);
   return (
+    // <>Hello</>
     <Router>
       {!user ? (
         <Loginpage signup={createNewUser} SignWithGoogle={SignWithGoogle} />
       ) : (
         <Switch>
+          <Route path="/profile" exact>
+            <Profilepage />
+          </Route>
           <Route path="/">
             <Mainpage />
           </Route>
@@ -50,14 +58,14 @@ function App() {
 }
 export default App;
 export function SignWithGoogle() {
-  auth.signInWithRedirect(googleProvider);
+  auth.signInWithPopup(googleProvider);
 }
 export function createNewUser(info) {
-  console.error("hello");
+  // console.error("hello");
   auth
-    .createUserWithEmailAndPassword(info.email, info.SIGNINpass)
+    .createUserWithEmailAndPassword(info.email, info.password)
     .then(() => {
-      console.error("hello");
+      console.error("new user");
       const currentuser = auth.currentUser;
       currentuser
         .updateProfile({
@@ -80,7 +88,13 @@ export function createNewUser(info) {
         });
     })
     .catch((error) => {
-      console.error("hello");
+      console.error("error");
       alert(error.message);
     });
+}
+export function SignWithEmail(info) {
+  auth.signInWithEmailAndPassword(info.email, info.password).catch((error) => {
+    console.error("withemail");
+    alert(error.message);
+  });
 }

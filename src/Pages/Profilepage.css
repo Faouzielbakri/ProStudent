@@ -1,0 +1,107 @@
+.profilescreen {
+  color: white;
+  height: 100vh;
+}
+.profileScreen__body {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 8%;
+  max-width: 800px;
+}
+.profileScreen__body > h1 {
+  font-size: 60px;
+  font-weight: 400;
+  border-bottom: 1px solid #353838;
+  margin-bottom: 20px;
+}
+.profileScreen__body > h1 > a > img {
+  margin-left: -5rem;
+  margin-right: 2rem;
+}
+.profileScreen__info {
+  display: flex;
+}
+
+.profilescreen__image {
+  max-height: 100px;
+  max-width: 100px;
+  /* width: min-content; */
+  margin: 0 1rem 1rem 0;
+  margin-top: 0.8rem;
+}
+.profilescreen__image > img {
+  max-height: 100%;
+}
+.profileScreen__details {
+  flex: 1;
+}
+.profileScreen__details > h2 {
+  background-color: #4a3777;
+  padding: 15px;
+  font-size: 15px;
+  padding: 0.85rem 0rem 0.85rem 2rem;
+  display: flex;
+  /* width: clamp(20%, 70%, 100%); */
+}
+
+.profileScreen__details > h2 > span {
+  flex: 1;
+  text-align: center;
+}
+.profileScreen__plans {
+  margin-top: 20px;
+}
+.profileScreen__plans > h3 {
+  border-bottom: 1px solid #58eeee;
+  padding-bottom: 10px;
+}
+.profileScreen__signout {
+  padding: 10px 20px;
+  font-size: 1rem;
+  margin-top: 5%;
+  width: 100%;
+  color: aliceblue;
+  background-color: #e50914;
+  border: none;
+  cursor: pointer;
+}
+@media screen and (max-width: 700px) {
+  .profileScreen__body {
+    margin-top: 20%;
+    display: flex;
+    flex-direction: column;
+    min-width: 80%;
+  }
+  .profileScreen__info {
+    flex-direction: column;
+  }
+  .profileScreen__details {
+    margin-left: 0;
+  }
+  .profileScreen__details > h2 {
+    padding: 1rem 0.2rem 1rem 0.5rem;
+  }
+  .profilescreen__image {
+    max-height: 150px;
+    max-width: 150px;
+    /* width: min-content; */
+    margin: 1rem auto;
+    margin-top: 0.8rem;
+  }
+  .profilescreen__image > img {
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid #f0f0f0;
+  }
+  .profileScreen__body > h1 {
+    font-size: 40px;
+  }
+  .profileScreen__body > h1 > a > img {
+    margin-left: -1.5rem;
+    margin-right: 0rem;
+    height: 30px;
+  }
+}

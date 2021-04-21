@@ -11,6 +11,7 @@
   padding: 10px 0px;
   border-radius: 5px;
   flex: 1;
+  box-shadow: 0 2px 12px rgb(32 33 36 / 28%);
 }
 .Courses > h3 {
   color: #9f9f9f;
