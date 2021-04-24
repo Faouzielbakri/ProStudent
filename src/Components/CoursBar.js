@@ -55,6 +55,7 @@ const CoursBar = ({ doc, code, isTeacher = true, classid }) => {
       .get()
       .then((params) => {
         params.forEach((doc) => {
+          console.log(doc.id);
           setRandomCode(doc.id);
           return doc.id;
         });
@@ -63,6 +64,7 @@ const CoursBar = ({ doc, code, isTeacher = true, classid }) => {
     if (snapshot.empty) {
       console.log("No matching documents.");
     }
+
     // console.log(state);
   }
   const setVisibiliy = async (theBoolean) => {
@@ -93,9 +95,9 @@ const CoursBar = ({ doc, code, isTeacher = true, classid }) => {
       });
   };
   useEffect(() => {
-    getCode(classid);
+    isTeacher ? getCode(code) : getCode(classid);
     // console.log();
-  }, [classid]);
+  }, [classid, code, isTeacher]);
   // console.log(doc);
   return doc.data.visible || isTeacher ? (
     <div className={`Courses__docs ${!isTeacher && "No__wrap"}`} id={doc.id}>

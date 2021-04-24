@@ -97,7 +97,7 @@ const Courses = ({ code = null, isTeacher = true }) => {
           <CoursBar
             key={`${doc.id}`}
             doc={doc}
-            code={code}
+            code={doc.code}
             isTeacher={isTeacher}
             classid={doc?.classid}
           />

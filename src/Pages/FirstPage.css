@@ -43,15 +43,19 @@ canvas {
   color: #e8e8e8;
   position: absolute;
   top: 1rem;
-  /* right: 2rem; */
+  right: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 20px;
 }
 @media only screen and (max-width: 1130px) {
   .FirstPage__Codeinput {
     width: 80vw;
+  }
+  .FirstPage__login,
+  .FirstPage__login > a {
+    font-size: 10px;
   }
 }
