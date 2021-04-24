@@ -5,17 +5,20 @@ import Avatar from "@material-ui/core/Avatar";
 import { Button } from "@material-ui/core";
 import * as actions from "../backend/actions";
 import store from "../backend/store";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 function Navbar() {
   //eslint-disable-next-line
   const [user, setuser] = useState(store.getState().user);
+  const history = useHistory();
   store.subscribe(() => {
     setuser(store.getState().user);
     // console.log(user);
   });
+
   return (
     <div className="Navbar">
-      <Link to="/profile">
+      {!user ? history.push("/login") : ""}
+      <Link to="/teacher/profile">
         <Avatar
           alt={user?.displayName}
           src={user?.photoURL}

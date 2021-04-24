@@ -2,17 +2,19 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { db } from "../backend/firebase";
 import "./Courses.css";
-import LoadingSvg from "../media/loading.gif";
 import { Grid } from "@material-ui/core";
 import { CoursBar } from "./CoursBar.js";
+import store from "../backend/store";
 
-function Courses({ user, setuser }) {
+const Courses = ({ code = null, isTeacher = true }) => {
   const [items, setItems] = useState([]);
-  const [isfetching, setIsfetching] = useState(false);
-
-  //Use Effect to get all the courses managed by the Current user
-  useEffect(() => {
-    setIsfetching(true);
+  const [user, setuser] = useState(store.getState().user);
+  store.subscribe(() => {
+    setuser(store.getState().user);
+  });
+  // Get user Courses
+  async function retrieveCourses() {
+    console.log("he");
     const classesRef = db
       .collection("Prof")
       .doc(user?.uid?.toString())
@@ -32,7 +34,6 @@ function Courses({ user, setuser }) {
                 })
               ),
             ];
-            // console.table("before", tempitems[3].id, tempitems[3].data.visible);
             tempitems = tempitems.reverse().filter((item, index, self) => {
               if (index === self.findIndex((t) => t.id === item.id)) {
                 return true;
@@ -41,52 +42,76 @@ function Courses({ user, setuser }) {
             });
 
             setItems([...tempitems]);
-            // console.table(tempitems[3].id, tempitems[3].data.visible);
           });
         return docu.id;
       });
     });
-    setIsfetching(false);
-    // eslint-disable-next-line
-  }, []);
-  // eslint-disable-next-line
-  async function retrieveFile() {
-    const res = (await db.collection("uuid").get()).data();
-    const classesRef = await db
-      .collection("Prof")
-      .doc(res.profuid.toString())
-      .collection("Classes");
-    classesRef.get().then((snapshot) => {
-      snapshot.docs.map((docu) => {
-        classesRef
-          .doc(docu.id)
-          .collection("Courses")
-          .get()
-          .then((snapshot) => {
-            setItems(
-              items.concat(
-                snapshot.docs.map((doc) => {
-                  return { id: doc.id, data: doc.data(), code: docu.id };
-                })
-              )
-            );
-          });
-        return docu.id;
-      });
-    });
-    // .doc(res.classuid.toString())
-    // console.log(items);
   }
-  // console.log(retrieveFile());
+  // Get Courses based on The code
+  async function retrieveFiles(code) {
+    var res = null;
+    if (code) {
+      res = (await db.collection("uuid").doc(code).get()).data();
+    }
+    // console.log(res?.classuid);
+    if (res) {
+      const classesRef = await db
+        .collection("Prof")
+        .doc(res.profuid.toString())
+        .collection("Classes");
+      classesRef
+        .doc(res.classuid)
+        .collection("Courses")
+        .get()
+        .then((snapshot) => {
+          setItems(
+            items.concat(
+              snapshot.docs.map((doc) => {
+                return {
+                  id: doc.id,
+                  data: doc.data(),
+                  code: code,
+                  classid: res.classuid,
+                };
+              })
+            )
+          );
+        });
+    } else {
+      // console.log("no courses's corresponded to this code");
+    }
+  }
+  //Get ALl the courses and orgnize them
+  useEffect(() => {
+    console.log(code);
+    isTeacher === true ? retrieveCourses() : retrieveFiles(code);
+    // eslint-disable-next-line
+  }, [code]);
+  // eslint-disable-next-line
+
   return (
     <Grid className="Courses">
       <h3>Cours</h3>
-      {items.map((doc) => (
-        <CoursBar key={`${doc.id}`} doc={doc} code={doc.code} />
-      ))}
-      {isfetching && <img src={LoadingSvg} alt="loading" />}
+      {items.length !== 0 ? (
+        items.map((doc) => (
+          <CoursBar
+            key={`${doc.id}`}
+            doc={doc}
+            code={code}
+            isTeacher={isTeacher}
+            classid={doc?.classid}
+          />
+        ))
+      ) : (
+        <span>
+          no Courses To show Please{" "}
+          {isTeacher
+            ? `add Courses`
+            : `${code ? "verifie The" : "type a"}  code`}{" "}
+        </span>
+      )}
     </Grid>
   );
-}
+};
 
 export default Courses;

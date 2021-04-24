@@ -28,7 +28,7 @@ input:focus {
 
 .form {
   display: flex;
-  width: clamp(300px, 55vw, 625px);
+  /* width: clamp(300px, 55vw, 625px); */
   background: #fff;
   margin: 15px;
   padding: 25px;
@@ -120,7 +120,9 @@ input:focus {
 }
 .form-field input[type="email"],
 input[type="password"],
-input[type="text"] {
+.speciality,
+.name,
+.email {
   width: -webkit-fill-available;
   padding: 15px;
   border-radius: 10px;

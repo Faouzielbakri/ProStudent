@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 function Profilepage() {
   const [user, setuser] = useState(store.getState().user);
+
   const temp__Image =
     "https://pbs.twimg.com/profile_images/1240119990411550720/hBEe3tdn_400x400.png";
   store.subscribe(() => {
@@ -16,10 +17,9 @@ function Profilepage() {
   return (
     <div className="profilescreen">
       <Navbar />
-      {/* {console.log(user)} */}
       <div className="profileScreen__body">
         <h1>
-          <Link to="/">
+          <Link to="/teacher">
             <img
               src="https://img.icons8.com/nolan/64/back.png"
               alt="back arrow"
@@ -30,22 +30,22 @@ function Profilepage() {
         </h1>
         <div className="profileScreen__info">
           <div className="profilescreen__image">
-            <img src={user.photoURL || temp__Image} alt="profileScreen__img" />
+            <img src={user?.photoURL || temp__Image} alt="profileScreen__img" />
           </div>
 
           <div className="profileScreen__details">
             <h2>
-              name : <span>{user.displayName}</span>
+              name : <span>{user?.displayName}</span>
             </h2>
-            {user.speciality ? (
+            {user?.speciality ? (
               <h2>
-                speciality :<span>{`${user.speciality}`}</span>{" "}
+                speciality :<span>{`${user?.speciality}`}</span>{" "}
               </h2>
             ) : (
               ""
             )}
             <h2>
-              email : <span>{user.email}</span>
+              email : <span>{user?.email}</span>
             </h2>
             <div className="profileScreen__plans">
               <button

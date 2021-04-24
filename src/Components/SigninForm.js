@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import "./signup.css";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { createNewUser, SignWithGoogle, SignWithEmail } from "./../App";
+import { useHistory } from "react-router-dom";
 function SigninForm() {
   const [switcher, setswitcher] = useState(false);
   const [info, setInfo] = useState({});
-
+  const history = useHistory();
   return (
     <div
       class="form"
@@ -17,7 +18,7 @@ function SigninForm() {
         <ArrowBackIcon
           id="arrow-back"
           onClick={() => {
-            setswitcher(false);
+            switcher === true ? setswitcher(false) : history.push("/");
           }}
         />
         <h1>Log in</h1>
@@ -41,6 +42,7 @@ function SigninForm() {
             <label for="email">Email</label>
             <input
               id="email"
+              className="email"
               type="email"
               placeholder="Email"
               required
@@ -69,6 +71,7 @@ function SigninForm() {
                 <label for="name">Name</label>
                 <input
                   id="name"
+                  className="name"
                   type="text"
                   placeholder="Full Name"
                   required
@@ -82,6 +85,7 @@ function SigninForm() {
                 <label for="speciality">Speciality</label>
                 <input
                   id="speciality"
+                  className="speciality"
                   type="text"
                   placeholder="Enter Your Speciality"
                   required

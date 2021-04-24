@@ -7,9 +7,14 @@ import { auth, googleProvider } from "./backend/firebase";
 import store from "./backend/store";
 import * as actions from "./backend/actions";
 import Profilepage from "./Pages/Profilepage";
-function App() {
-  const [user, setuser] = useState(store.getState().user);
+import StudentPage from "./Pages/StudentPage";
+import FirstPage from "./Pages/FirstPage";
 
+function App() {
+  //eslint-disable-next-line
+  const [user, setuser] = useState(store.getState().user);
+  //eslint-disable-next-line
+  const [teacher, setteacher] = useState();
   store.subscribe(() => {
     setuser(store.getState().user);
   });
@@ -17,15 +22,12 @@ function App() {
   useEffect(() => {
     return auth.onAuthStateChanged((user) => {
       if (user) {
-        // const currentuser = auth.currentUser;
-
-        // console.log(isfetching, user.providerData[0]);
-        // User is signed in
-        // setuser(user.providerData[0]);
+        // User is signed In
         store.dispatch({
           type: actions.SIGNIN,
           payload: { user: user.providerData[0] },
         });
+        setteacher(true);
       } else {
         // User is signed out
         store.dispatch({
@@ -33,26 +35,35 @@ function App() {
         });
       }
     });
-    // console.log(user);
     //eslint-disable-next-line
   }, []);
-  // [END auth_state_listener]
-  console.log(user);
+
   return (
-    // <>Hello</>
     <Router>
-      {!user ? (
-        <Loginpage signup={createNewUser} SignWithGoogle={SignWithGoogle} />
+      {/* {teacher === true ? (
+        <Redirect to={"/teacher"} />
+      ) : teacher === false ? (
+        <Redirect to={"/student"} />
       ) : (
-        <Switch>
-          <Route path="/profile" exact>
-            <Profilepage />
-          </Route>
-          <Route path="/">
-            <Mainpage />
-          </Route>
-        </Switch>
-      )}
+        <Redirect to={"/"} />
+      )} */}
+      <Switch>
+        <Route exact path="/teacher/profile">
+          <Profilepage />
+        </Route>
+        <Route exact path="/teacher">
+          <Mainpage />
+        </Route>
+        <Route exact path="/student">
+          <StudentPage />
+        </Route>
+        <Route exact path="/login">
+          <Loginpage />
+        </Route>
+        <Route exact path="/">
+          <FirstPage />
+        </Route>
+      </Switch>
     </Router>
   );
 }

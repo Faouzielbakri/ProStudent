@@ -4,11 +4,15 @@ import GetAppIcon from "@material-ui/icons/GetApp";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import Tooltip from "@material-ui/core/Tooltip";
+import DeleteIcon from "@material-ui/icons/Delete";
 import { db, storage } from "../backend/firebase";
 import "./CoursBar.css";
 import store from "./../backend/store";
-const CoursBar = ({ doc, code }) => {
+import useWindowDimensions from "../backend/useWindowDimensions ";
+const CoursBar = ({ doc, code, isTeacher = true, classid }) => {
   const [RandomCode, setRandomCode] = useState("");
+  //eslint-disable-next-line
+  const { height, width } = useWindowDimensions();
   const Downloadfile = (path) => {
     storage
       .ref(path)
@@ -46,7 +50,6 @@ const CoursBar = ({ doc, code }) => {
   });
   function getCode(classid) {
     const citiesRef = db.collection("uuid");
-    // var id = "";
     const snapshot = citiesRef
       .where("classuid", "==", classid)
       .get()
@@ -74,19 +77,42 @@ const CoursBar = ({ doc, code }) => {
       .update({ visible: theBoolean });
     // console.log(doc);
   };
+  const DeleteDoc = async () => {
+    await db
+      .collection("Prof")
+      .doc(user.uid)
+      .collection("Classes")
+      .doc(doc.code)
+      .collection("Courses")
+      .doc(doc.id)
+      .delete()
+      .then(() => {
+        const x = document.getElementById(doc.id);
+        x.style.display = "none";
+        alert(`deleted ${doc.data.coursName} of ${doc.data.className}`);
+      });
+  };
   useEffect(() => {
-    getCode(code);
-  }, []);
-  return (
-    <div className="Courses__docs">
+    getCode(classid);
+    // console.log();
+  }, [classid]);
+  // console.log(doc);
+  return doc.data.visible || isTeacher ? (
+    <div className={`Courses__docs ${!isTeacher && "No__wrap"}`} id={doc.id}>
       <span className="Courses__docsTitle">{doc.data.coursName}</span>
       <div className="Courses_separator" />
-      <span className="Courses__docsNote">{doc.data.note}</span>
+      <span className={`Courses__docsNote ${!isTeacher && "Show__note"}`}>
+        {doc.data.note}
+      </span>
       <div className="Courses_separator" />
       <span className="Courses__docsCode">{RandomCode}</span>
       <div className="Courses_separator" />
       <span className="Courses__docsClassname">{doc.data.className}</span>
-      <div className="Courses_separator" />
+      {width >= 1000 ? (
+        <div className="Courses_separator" />
+      ) : (
+        <div className="break" />
+      )}
       <Tooltip title={`Download File`} placement="top-start">
         <Button
           style={{
@@ -104,26 +130,36 @@ const CoursBar = ({ doc, code }) => {
           <GetAppIcon id="downloadIcon" />
         </Button>
       </Tooltip>
+
+      {isTeacher && (
+        <>
+          <div className="Courses_separator" />
+          <Tooltip
+            title={doc.data.visible ? "Visible" : "hidden"}
+            placement="top-start"
+            onClick={() => {
+              setVisibiliy(!doc.data.visible);
+            }}
+          >
+            {doc.data.visible ? (
+              <VisibilityIcon id="VisibiltyIcon" />
+            ) : (
+              <VisibilityOffIcon id="VisibiltyIcon" />
+            )}
+          </Tooltip>
+          <div className="Courses_separator" />
+          <Tooltip title={"Delete"} placement="top-start" onClick={DeleteDoc}>
+            <DeleteIcon id="deleteIcon"></DeleteIcon>
+          </Tooltip>
+        </>
+      )}
       <div className="Courses_separator" />
       <span className="Courses__docsDateOfupload">{doc.data.dateOfUpload}</span>
-      <div className="Courses_separator" />
-      <Tooltip
-        title={doc.data.visible ? "Visible" : "hidden"}
-        placement="top-start"
-        onClick={() => {
-          setVisibiliy(!doc.data.visible);
-        }}
-      >
-        {doc.data.visible ? (
-          <VisibilityIcon id="VisibiltyIcon" />
-        ) : (
-          <VisibilityOffIcon
-            id="VisibiltyIcon"
-            // onClick={setVisibiliy(!doc.data.visible)}
-          />
-        )}
-      </Tooltip>
     </div>
+  ) : (
+    <span className={`${doc.data.visible && "hide"}`}>
+      There are Courses found but hidden ask The teacher To Unhide it{" "}
+    </span>
   );
 };
 

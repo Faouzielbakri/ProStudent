@@ -10,7 +10,12 @@
   align-items: center;
   transition: all 0.1s;
 }
-
+.No__wrap {
+  flex-wrap: nowrap;
+}
+.hide {
+  display: none;
+}
 .Courses__docsNote {
   flex: 1;
   color: gray;
@@ -35,10 +40,14 @@
   border-radius: 50%;
 }
 #downloadIcon,
-#VisibiltyIcon {
+#VisibiltyIcon,
+#deleteIcon {
   color: #a49bda;
 }
-
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
 #VisibiltyIcon {
   margin-right: 0.5rem;
 }
@@ -47,6 +56,9 @@
 }
 .Courses__docs:hover {
   font-size: large;
+}
+.No__wrap:hover {
+  font-size: medium;
 }
 @media only screen and (max-width: 1130px) {
   .Courses__docsTitle {
@@ -64,11 +76,15 @@
   }
   .Courses__docs {
     gap: 0.5rem;
+    flex-wrap: wrap;
   }
   .Courses__docsNote {
     display: none;
   }
   .Courses > div > div:nth-child(2) {
     display: none;
+  }
+  .Show__note > {
+    display: flex;
   }
 }
