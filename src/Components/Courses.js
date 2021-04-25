@@ -83,7 +83,7 @@ const Courses = ({ code = null, isTeacher = true }) => {
   }
   //Get ALl the courses and orgnize them
   useEffect(() => {
-    console.log(code);
+    // console.log(code);
     isTeacher === true ? retrieveCourses() : retrieveFiles(code);
     // eslint-disable-next-line
   }, [code]);

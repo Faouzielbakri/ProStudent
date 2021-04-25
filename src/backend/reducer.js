@@ -1,6 +1,5 @@
 import * as actions from "./actions";
 import { auth, db } from "./firebase";
-import store from "./store";
 
 const initialState = { user: null, lastCodeUsed: null };
 
@@ -10,39 +9,29 @@ const getspeciality = async (temporaryStore) => {
     await db.collection("Prof").doc(temporaryStore.user.uid).get()
   ).data();
   if (ts?.hasOwnProperty("speciality")) {
-    store.dispatch({
-      type: actions.UPDATESTORE,
-      payload: {
-        ...temporaryStore,
-        user: { ...temporaryStore.user, speciality: ts.speciality },
-      },
-    });
+    return ts.speciality;
   } else {
-    store.dispatch({
-      type: actions.UPDATESTORE,
-      payload: {
-        ...temporaryStore,
-      },
-    });
+    return null;
   }
 };
-const setspeacility = async (speaciality, profuid) => {
-  console.log(speaciality, typeof speaciality);
-  await db.collection("Prof").doc(profuid).update({
-    speaciality: speaciality,
+const setspeacility = async (speciality, profuid) => {
+  console.log(speciality, profuid);
+  await db.collection("Prof").doc(profuid).set({
+    speciality: speciality,
   });
 };
 export default function reducer(state = initialState, action) {
-  // console.log("user info ", state);
   switch (action.type) {
     case actions.SIGNIN:
       let temp = { ...state, user: { ...state.user, ...action.payload.user } };
-      console.log(temp);
       if (!temp.user.hasOwnProperty("speciality")) {
-        getspeciality(temp);
-        break;
+        getspeciality(temp).then((params) => {
+          if (params) {
+            temp.user.speciality = params;
+          }
+          return temp;
+        });
       }
-      console.log(temp);
       return temp;
     case actions.UPDATESTORE:
       return action.payload;
