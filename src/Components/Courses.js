@@ -26,7 +26,7 @@ const Courses = ({ code = null, isTeacher = true }) => {
           .doc(docu.id)
           .collection("Courses")
           .onSnapshot(async (snap) => {
-            console.log(tempitems);
+            // console.log(tempitems);
             tempitems = await [
               ...tempitems.concat(
                 snap.docs.map((doc) => {
@@ -90,8 +90,8 @@ const Courses = ({ code = null, isTeacher = true }) => {
   // eslint-disable-next-line
 
   return (
-    <Grid className="Courses">
-      <h3>Cours</h3>
+    <Grid className={`Courses ${isTeacher && "flex1"}`}>
+      <h3>Courses</h3>
       {items.length !== 0 ? (
         items.map((doc) => (
           <CoursBar

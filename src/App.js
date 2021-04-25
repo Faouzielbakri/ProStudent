@@ -48,7 +48,7 @@ function App() {
   }, [user]);
   return (
     <Router>
-      {console.log(user)}
+      {/* {console.log(user)} */}
       {user && <Redirect to={"/teacher"} />}
       <Switch>
         <Route exact path="/teacher/profile">
@@ -63,7 +63,7 @@ function App() {
         <Route exact path="/login">
           <Loginpage />
         </Route>
-        <Route exact path="/">
+        <Route path="/">
           <FirstPage />
         </Route>
       </Switch>

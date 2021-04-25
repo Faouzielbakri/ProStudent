@@ -1,6 +1,6 @@
 .Courses {
   font-family: raleway;
-  background-color: #e8eaf9;
+  background-color: rgba(232, 234, 249, 0.3);
   /* align-self: center; */
   margin: 10px;
   min-width: 700px;
@@ -10,11 +10,18 @@
   font-weight: 500;
   padding: 10px 0px;
   border-radius: 5px;
-  /* flex: 1; */
-  box-shadow: 0 2px 12px rgb(32 33 36 / 28%);
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1px);
+  border-top: 1px solid #fff;
+  border-left: 1px solid #fff;
+}
+.flex1 {
+  flex: 1;
+  background-color: rgba(232, 234, 249, 0.3);
+  backdrop-filter: blur(3px);
 }
 .Courses > h3 {
-  color: #9f9f9f;
+  color: #161623;
   align-self: center;
   justify-self: flex-start;
   font-family: raleway;
@@ -25,18 +32,21 @@
 }
 .Courses > span {
   align-self: center;
-  margin: 1rem 0 1rem 0;
+  margin: 2vh 0 1rem 0;
   font-weight: 600;
 }
 
 @media only screen and (max-width: 1130px) {
   .Courses {
     min-width: 0px;
-    width: 100%;
-    margin: 1rem 1rem 0 0;
+    width: 95%;
+    margin: 1rem 0.5rem 0 0.5rem;
     min-height: 20vh;
   }
   .Courses > h3 {
     font-size: 1.5rem;
+  }
+  .Courses > span {
+    margin: 5vh 0 1rem 0;
   }
 }

@@ -9,6 +9,7 @@
   gap: 1rem;
   align-items: center;
   transition: all 0.1s;
+  transition: background-color 1s;
 }
 .No__wrap {
   flex-wrap: nowrap;

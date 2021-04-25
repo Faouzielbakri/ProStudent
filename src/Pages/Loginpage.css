@@ -5,6 +5,7 @@
 .Loginpage {
   display: grid;
   min-height: 100vh;
+  min-width: 90%;
   place-items: center;
   font-family: raleway;
 }

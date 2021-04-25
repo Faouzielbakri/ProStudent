@@ -90,15 +90,32 @@ const CoursBar = ({ doc, code, isTeacher = true, classid }) => {
       .delete()
       .then(() => {
         const x = document.getElementById(doc.id);
-        x.style.display = "none";
-        alert(`deleted ${doc.data.coursName} of ${doc.data.className}`);
+        fadeFunction(x, "red", "#fff").then(() => {});
+        // alert(`deleted ${doc.data.coursName} of ${doc.data.className}`);
       });
   };
   useEffect(() => {
     isTeacher ? getCode(code) : getCode(classid);
     // console.log();
   }, [classid, code, isTeacher]);
-  // console.log(doc);
+  const fadeFunction = async (element, from, to, abool) => {
+    setTimeout(function () {
+      element.style.backgroundColor = from; //"#a9c7ff";
+    }, 400);
+    setTimeout(function () {
+      element.style.backgroundColor = to; //"#ffffff";
+    }, 800);
+    if (abool) {
+      setTimeout(function () {
+        element.classList.add("hide");
+      }, 1000);
+    }
+  };
+  useEffect(() => {
+    var r = document.getElementById(doc.id);
+    fadeFunction(r, "#a9c7ff", "#fff");
+    //eslint-disable-next-line
+  }, [doc.id]);
   return doc.data.visible || isTeacher ? (
     <div className={`Courses__docs ${!isTeacher && "No__wrap"}`} id={doc.id}>
       <span className="Courses__docsTitle">{doc.data.coursName}</span>

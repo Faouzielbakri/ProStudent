@@ -7,14 +7,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: rgb(164, 155, 218);
-
-  background-image: linear-gradient(
+  background: #161623;
+  /* background-image: linear-gradient(
     linear,
     left top,
     left bottom,
     rgba(232, 234, 249, 0.5) 0%,
     rgba(232, 234, 249, 0) 100%
-  );
+  ); */
   background-repeat: no-repeat;
   background-attachment: scroll;
 }

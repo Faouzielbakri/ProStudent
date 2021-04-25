@@ -13,14 +13,16 @@
 .Addcours__form {
   display: flex;
   flex-direction: column;
-  background-color: #e8eaf9;
-  /* gap: 10px; */
   justify-content: flex-start;
   padding: 40px 15px;
-  width: 100%;
+  width: clamp(360px, 100%, 100%);
   margin-left: 10%;
   border-radius: 5px;
-  box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+  background-color: rgba(232, 234, 249, 0.3);
+  border-top: 1px solid #fff;
+  border-left: 1px solid #fff;
+  backdrop-filter: blur(3px);
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
 }
 .Addcours__formelement {
   display: flex;
@@ -36,7 +38,6 @@
   padding: 5px 0px;
   text-indent: 10px;
   border-radius: 5px;
-  /* box-shadow: 0 0 1px 1px  #bfb4ff; */
   transition: 0.3s all;
 }
 .Addcours__formelement > input:focus {
