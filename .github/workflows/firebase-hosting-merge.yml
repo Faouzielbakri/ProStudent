@@ -15,8 +15,8 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ESSAFACOURS }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PRO__STUDENT }}'
           channelId: live
-          projectId: essafacours
+          projectId: pro--student
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
