@@ -55,7 +55,7 @@ const CoursBar = ({ doc, code, isTeacher = true, classid }) => {
       .get()
       .then((params) => {
         params.forEach((doc) => {
-          console.log(doc.id);
+          // console.log(doc.id);
           setRandomCode(doc.id);
           return doc.id;
         });

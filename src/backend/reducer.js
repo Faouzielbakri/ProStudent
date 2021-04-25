@@ -18,19 +18,27 @@ const getspeciality = async (temporaryStore) => {
       },
     });
   } else {
-    //not yet
+    store.dispatch({
+      type: actions.UPDATESTORE,
+      payload: {
+        ...temporaryStore,
+      },
+    });
   }
 };
 export default function reducer(state = initialState, action) {
   // console.log("user info ", state);
   switch (action.type) {
     case actions.SIGNIN:
-      let temp = { ...state, user: { ...state.user, ...action.payload.user } };
-      if (!temp.user.hasOwnProperty("speciality")) {
-        getspeciality(temp);
-        break;
-      }
-      return temp;
+      // let temp =
+      return { ...state, user: { ...state.user, ...action.payload.user } };
+    // console.log(temp);
+    // if (!temp.user.hasOwnProperty("speciality")) {
+    //   getspeciality(temp);
+    //   break;
+    // }
+    // console.log(temp);
+    // return temp;
     case actions.UPDATESTORE:
       return action.payload;
     case actions.LOGOUT:

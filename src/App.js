@@ -1,5 +1,10 @@
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import { useEffect, useState } from "react";
 import Mainpage from "./Pages/Mainpage";
 import Loginpage from "./Pages/Loginpage";
@@ -20,7 +25,7 @@ function App() {
   });
 
   useEffect(() => {
-    return auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
       if (user) {
         // User is signed In
         store.dispatch({
@@ -30,6 +35,7 @@ function App() {
         setteacher(true);
       } else {
         // User is signed out
+        console.log("not in");
         store.dispatch({
           type: actions.LOGOUT,
         });
@@ -37,16 +43,13 @@ function App() {
     });
     //eslint-disable-next-line
   }, []);
-
+  useEffect(() => {
+    // console.log(user);
+  }, [user]);
   return (
     <Router>
-      {/* {teacher === true ? (
-        <Redirect to={"/teacher"} />
-      ) : teacher === false ? (
-        <Redirect to={"/student"} />
-      ) : (
-        <Redirect to={"/"} />
-      )} */}
+      {console.log(user)}
+      {user && <Redirect to={"/teacher"} />}
       <Switch>
         <Route exact path="/teacher/profile">
           <Profilepage />
