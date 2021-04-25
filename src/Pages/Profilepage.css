@@ -44,6 +44,7 @@
   font-size: 15px;
   padding: 0.85rem 0rem 0.85rem 2rem;
   display: flex;
+  align-items: center;
   /* width: clamp(20%, 70%, 100%); */
 }
 
@@ -58,6 +59,21 @@
   border-bottom: 1px solid #58eeee;
   padding-bottom: 10px;
 }
+.profileScreen__Input {
+  background-color: #4a3777;
+  flex: 1;
+  margin: 0 1rem;
+  padding: 5px;
+  text-align: center;
+  border: 0;
+  color: #fff;
+}
+.profileScreen__Input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.profileScreen__Input:focus::placeholder {
+  color: transparent;
+}
 .profileScreen__signout {
   padding: 10px 20px;
   font-size: 1rem;
@@ -68,6 +84,7 @@
   border: none;
   cursor: pointer;
 }
+
 @media screen and (max-width: 700px) {
   .profileScreen__body {
     margin-top: 20%;

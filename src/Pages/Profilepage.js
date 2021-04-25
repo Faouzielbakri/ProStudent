@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 function Profilepage() {
   const [user, setuser] = useState(store.getState().user);
-
+  const [speaciality, setspeaciality] = useState("");
   const temp__Image =
     "https://pbs.twimg.com/profile_images/1240119990411550720/hBEe3tdn_400x400.png";
   store.subscribe(() => {
@@ -30,7 +30,7 @@ function Profilepage() {
         </h1>
         <div className="profileScreen__info">
           <div className="profilescreen__image">
-            <img src={user?.photoURL || temp__Image} alt="profileScreen__img" />
+            <img src={user?.photoURL || temp__Image} alt="profile img" />
           </div>
 
           <div className="profileScreen__details">
@@ -42,7 +42,24 @@ function Profilepage() {
                 speciality :<span>{`${user?.speciality}`}</span>{" "}
               </h2>
             ) : (
-              ""
+              <h2>
+                speciality :
+                <input
+                  type="text"
+                  placeholder="type your speciality"
+                  className="profileScreen__Input"
+                  value={speaciality}
+                  onChange={(e) => {
+                    setspeaciality(e.target.value);
+                  }}
+                  onBlur={() => {
+                    store.dispatch({
+                      type: actions.SETSPEACILITY,
+                      payload: { speciality: speaciality },
+                    });
+                  }}
+                />
+              </h2>
             )}
             <h2>
               email : <span>{user?.email}</span>
