@@ -66,6 +66,18 @@
   white-space: nowrap;
   overflow: hidden;
 }
+.Addcours__progressbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.progress__bar {
+  margin-top: 10px;
+  width: 90%;
+}
+.hide {
+  display: none;
+}
 #Uploadbutton {
   width: 150px;
   align-self: center;

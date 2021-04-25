@@ -1,14 +1,30 @@
 import React from "react";
-import { Button, Grid } from "@material-ui/core";
+import { Button, Grid, LinearProgress, withStyles } from "@material-ui/core";
 import "./Addcours.css";
 import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
 import { useState } from "react";
 import { format } from "date-fns/esm";
 import { db, storage } from "../backend/firebase";
 import { nanoid } from "nanoid";
+const BorderLinearProgress = withStyles((theme) => ({
+  root: {
+    height: 10,
+    borderRadius: 5,
+  },
+  colorPrimary: {
+    backgroundColor:
+      theme.palette.grey[theme.palette.type === "light" ? 200 : 700],
+  },
+  bar: {
+    borderRadius: 5,
+    backgroundColor: "#1a90ff",
+  },
+}))(LinearProgress);
+
 function Addcours({ user, setuser }) {
   const [formdata, setFormdata] = useState({});
   const [document, setDocument] = useState(null);
+  const [progressValue, setprogressValue] = useState(0);
   const UploadFile = (fileToUpload) => {
     if (fileToUpload !== null && fileToUpload) {
       var pathRef = storage.ref(
@@ -17,7 +33,11 @@ function Addcours({ user, setuser }) {
       var task = pathRef.put(fileToUpload);
       task.on(
         "state_changed",
-        function progress(snapshot) {},
+        function progress(snapshot) {
+          setprogressValue(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+        },
         function error(err) {
           console.log(err);
         },
@@ -157,6 +177,14 @@ function Addcours({ user, setuser }) {
                 ? "Fill the informations First"
                 : "no File selected")}
           </span>
+        </div>
+        <div className="Addcours__progressbar">
+          <BorderLinearProgress
+            className={`progress__bar`}
+            variant="determinate"
+            value={progressValue}
+          />
+          {`${progressValue}%`}
         </div>
         <Button id="Uploadbutton" variant="contained" type="submit">
           Upload File

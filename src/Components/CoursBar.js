@@ -90,7 +90,7 @@ const CoursBar = ({ doc, code, isTeacher = true, classid }) => {
       .delete()
       .then(() => {
         const x = document.getElementById(doc.id);
-        fadeFunction(x, "red", "#fff").then(() => {});
+        fadeFunction(x, "red", "#fff", true);
         // alert(`deleted ${doc.data.coursName} of ${doc.data.className}`);
       });
   };
@@ -115,7 +115,7 @@ const CoursBar = ({ doc, code, isTeacher = true, classid }) => {
     var r = document.getElementById(doc.id);
     fadeFunction(r, "#a9c7ff", "#fff");
     //eslint-disable-next-line
-  }, [doc.id]);
+  }, []);
   return doc.data.visible || isTeacher ? (
     <div className={`Courses__docs ${!isTeacher && "No__wrap"}`} id={doc.id}>
       <span className="Courses__docsTitle">{doc.data.coursName}</span>
