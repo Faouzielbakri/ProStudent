@@ -4,6 +4,7 @@ import store from "./store";
 
 const initialState = { user: null, lastCodeUsed: null };
 
+//eslint-disable-next-line
 const getspeciality = async (temporaryStore) => {
   const ts = (
     await db.collection("Prof").doc(temporaryStore.user.uid).get()
