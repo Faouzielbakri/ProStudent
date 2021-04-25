@@ -25,12 +25,14 @@ function Addcours({ user, setuser }) {
   const [formdata, setFormdata] = useState({});
   const [document, setDocument] = useState(null);
   const [progressValue, setprogressValue] = useState(0);
+  const [disabled, setdisabled] = useState(false);
   const UploadFile = (fileToUpload) => {
     if (fileToUpload !== null && fileToUpload) {
       var pathRef = storage.ref(
         `files/${user.uid}/${formdata.classname}/${fileToUpload.name}`
       );
       var task = pathRef.put(fileToUpload);
+      setdisabled(true);
       task.on(
         "state_changed",
         function progress(snapshot) {
@@ -42,7 +44,8 @@ function Addcours({ user, setuser }) {
           console.log(err);
         },
         function complete() {
-          createRecord(task);
+          createRecord(task).then(() => {});
+          setdisabled(false);
         }
       );
     }
@@ -184,9 +187,14 @@ function Addcours({ user, setuser }) {
             variant="determinate"
             value={progressValue}
           />
-          {`${progressValue}%`}
+          {`${Math.round(progressValue)}%`}
         </div>
-        <Button id="Uploadbutton" variant="contained" type="submit">
+        <Button
+          id="Uploadbutton"
+          variant="contained"
+          type="submit"
+          disabled={disabled}
+        >
           Upload File
         </Button>
       </form>
