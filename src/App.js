@@ -35,7 +35,6 @@ function App() {
         setteacher(true);
       } else {
         // User is signed out
-        console.log("not in");
         store.dispatch({
           type: actions.LOGOUT,
         });
