@@ -76,8 +76,10 @@ export function SignWithGoogle() {
     .then((result) => {
       // /** @type {firebase.auth.OAuthCredential} */
       // The signed-in user info.
-      var user = result.user.providerData[0];
-      store.dispatch({ type: actions.SIGNIN, payload: user });
+      store.dispatch({
+        type: actions.SIGNIN,
+        payload: { user: result.providerData[0] },
+      });
     })
     .catch((error) => {
       alert(error.message);
