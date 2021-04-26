@@ -75,8 +75,6 @@ export function SignWithGoogle() {
     .signInWithPopup(googleProvider)
     .then((result) => {
       // /** @type {firebase.auth.OAuthCredential} */
-      var credential = result.credential;
-      console.log(credential);
       // The signed-in user info.
       var user = result.user.providerData[0];
       store.dispatch({ type: actions.SIGNIN, payload: user });
