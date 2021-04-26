@@ -23,7 +23,7 @@ function App() {
   store.subscribe(() => {
     setuser(store.getState().user);
   });
-
+  console.log(user);
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {

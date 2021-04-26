@@ -1,6 +1,16 @@
 .body {
   background: #fff;
 }
+.FirstPage__Title {
+  font-size: 10vw;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  bottom: 20%;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
 .container {
   display: flex;
   justify-content: space-between;
