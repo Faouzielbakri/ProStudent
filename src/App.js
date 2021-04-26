@@ -42,12 +42,8 @@ function App() {
     });
     //eslint-disable-next-line
   }, []);
-  useEffect(() => {
-    // console.log(user);
-  }, [user]);
   return (
     <Router>
-      {/* {console.log(user)} */}
       {user && <Redirect to={"/teacher"} />}
       <Switch>
         <Route exact path="/teacher/profile">
@@ -72,17 +68,6 @@ function App() {
 export default App;
 export function SignWithGoogle() {
   auth.signInWithPopup(googleProvider);
-  // .then((result) => {
-  //   // /** @type {firebase.auth.OAuthCredential} */
-  //   // The signed-in user info.
-  //   store.dispatch({
-  //     type: actions.SIGNIN,
-  //     payload: { user: result.providerData[0] },
-  //   });
-  // })
-  // .catch((error) => {
-  //   alert(error.message);
-  // });
 }
 export function createNewUser(info) {
   auth
