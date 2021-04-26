@@ -14,7 +14,7 @@ const Courses = ({ code = null, isTeacher = true }) => {
   });
   // Get user Courses
   async function retrieveCourses() {
-    console.log("he");
+    // console.log("he");
     const classesRef = db
       .collection("Prof")
       .doc(user?.uid?.toString())

@@ -23,7 +23,7 @@ function App() {
   store.subscribe(() => {
     setuser(store.getState().user);
   });
-  console.log(user);
+  // console.log(user);
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -71,10 +71,21 @@ function App() {
 }
 export default App;
 export function SignWithGoogle() {
-  auth.signInWithPopup(googleProvider);
+  auth
+    .signInWithPopup(googleProvider)
+    .then((result) => {
+      // /** @type {firebase.auth.OAuthCredential} */
+      var credential = result.credential;
+      console.log(credential);
+      // The signed-in user info.
+      var user = result.user.providerData[0];
+      store.dispatch({ type: actions.SIGNIN, payload: user });
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
 }
 export function createNewUser(info) {
-  // console.error("hello");
   auth
     .createUserWithEmailAndPassword(info.email, info.password)
     .then(() => {
