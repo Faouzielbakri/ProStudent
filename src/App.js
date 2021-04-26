@@ -71,19 +71,18 @@ function App() {
 }
 export default App;
 export function SignWithGoogle() {
-  auth
-    .signInWithPopup(googleProvider)
-    .then((result) => {
-      // /** @type {firebase.auth.OAuthCredential} */
-      // The signed-in user info.
-      store.dispatch({
-        type: actions.SIGNIN,
-        payload: { user: result.providerData[0] },
-      });
-    })
-    .catch((error) => {
-      alert(error.message);
-    });
+  auth.signInWithPopup(googleProvider);
+  // .then((result) => {
+  //   // /** @type {firebase.auth.OAuthCredential} */
+  //   // The signed-in user info.
+  //   store.dispatch({
+  //     type: actions.SIGNIN,
+  //     payload: { user: result.providerData[0] },
+  //   });
+  // })
+  // .catch((error) => {
+  //   alert(error.message);
+  // });
 }
 export function createNewUser(info) {
   auth
