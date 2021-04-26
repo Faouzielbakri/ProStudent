@@ -24,7 +24,8 @@
 .Navbar__username {
   font-size: 1.2rem;
   font-weight: 600;
-  margin-right: -5px;
+  margin-right: 0px;
+  margin-left: 2px;
 }
 .Navbar_separator {
   width: 0px;
@@ -33,7 +34,7 @@
   border-radius: 50%;
 }
 .Navbar__speciality {
-  margin-left: -10px;
+  margin-left: -5px;
   padding-top: 15px;
   color: #ffffff9f;
   text-transform: uppercase;

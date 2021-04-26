@@ -29,7 +29,7 @@ export default function reducer(state = initialState, action) {
           if (params) {
             temp.user.speciality = params;
           }
-          return temp;
+          // return temp;
         });
       }
       return temp;

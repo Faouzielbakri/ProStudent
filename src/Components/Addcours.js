@@ -90,7 +90,8 @@ function Addcours({ user, setuser }) {
             doc.docs[0]._delegate._document.key.path.segments[
               doc.docs[0]._delegate._document.key.path.segments.length - 1
             ];
-          const newadded = await res
+          // const newadded =
+          await res
             .doc(classid)
             .collection("Courses")
             .add({ ...metadatafordb });
@@ -98,12 +99,12 @@ function Addcours({ user, setuser }) {
           try {
             const uuidRef = db.collection("uuid");
             if (!uuidRef.where("classuid", "==", classid).get().exists) {
-              console.log("no need for random code", newadded.id);
+              // console.log("no need for random code", newadded.id);
             } else {
               uuidRef
                 .doc(randomUid.toString())
                 .set({ classuid: classid, profuid: user.uid });
-              console.log("Document successfully written! : ", classid);
+              // console.log("Document successfully written! : ", classid);
             }
           } catch (error) {
             console.error("Error writing document: ", error);
