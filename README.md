@@ -59,9 +59,9 @@ each course is structured in one line with the following informations:
 
 - the date that was created in
 - the button for all the possible actions :
-  1. you can delete
-  2. you can hide the course from students
-  3. or download the file
+  1.  delete
+  2.  hide the course from students
+  3.  download the file
 - the class name which will be getting the course
 - the auto generated code to share with the students in order for them to get the course
 - then the remark added if there's a remark
