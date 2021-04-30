@@ -107,7 +107,7 @@ const CoursBar = ({ doc, code, isTeacher = true, classid }) => {
     }, 800);
     if (abool) {
       setTimeout(function () {
-        element.classList.add("hide");
+        element.remove();
       }, 1000);
     }
   };

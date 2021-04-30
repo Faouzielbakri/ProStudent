@@ -50,7 +50,6 @@ function Addcours({ user, setuser }) {
       );
     }
   };
-
   async function createRecord(task) {
     var metadatafordb = {
       filename: document?.name,
@@ -112,7 +111,7 @@ function Addcours({ user, setuser }) {
         }
       })
       .catch((err) => {
-        console.log("error", err);
+        console.error("error", err);
       });
   }
   return (

@@ -49,13 +49,13 @@ function App() {
         <Route exact path="/teacher/profile">
           <Profilepage />
         </Route>
-        <Route exact path="/teacher">
+        <Route exact path="/teacher" title="Teacher">
           <Mainpage />
         </Route>
         <Route exact path="/student">
           <StudentPage />
         </Route>
-        <Route exact path="/login">
+        <Route exact path="/login" title="Login">
           <Loginpage />
         </Route>
         <Route path="/">
