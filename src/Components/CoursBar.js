@@ -180,12 +180,14 @@ const CoursBar = ({ doc, code, isTeacher = true, classid }) => {
       )}
       <Tooltip title={"Share on Facebook"} placement="top-start">
         <FacebookShareButton
+          quote="Here's your teacher's virtual course Ready for you to check it 😊"
           url={`https://prostudent.ga/student/${RandomCode}`}
           children={<FacebookIcon size={25} round={true} />}
         />
       </Tooltip>
       <Tooltip title={"Share on Whatsapp"} placement="top-start">
         <WhatsappShareButton
+          title="Here's your teacher's virtual course Ready for you to check it 😊"
           url={`https://prostudent.ga/student/${RandomCode}`}
           children={<WhatsappIcon size={25} round={true} />}
         />
