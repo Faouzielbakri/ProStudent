@@ -14,6 +14,7 @@ import * as actions from "./backend/actions";
 import Profilepage from "./Pages/Profilepage";
 import StudentPage from "./Pages/StudentPage";
 import FirstPage from "./Pages/FirstPage";
+import { Grid } from "@material-ui/core";
 
 function App() {
   //eslint-disable-next-line
@@ -52,8 +53,16 @@ function App() {
         <Route exact path="/teacher" title="Teacher">
           <Mainpage />
         </Route>
-        <Route exact path="/student">
-          <StudentPage />
+        <Route path="/student/:Course_code">
+          <Grid className={`container`}>
+            <span
+              className="FirstPage__Title"
+              // onClick={() => setswitcher(false)}
+            >
+              ProStudent
+            </span>
+            <StudentPage />
+          </Grid>
         </Route>
         <Route exact path="/login" title="Login">
           <Loginpage />

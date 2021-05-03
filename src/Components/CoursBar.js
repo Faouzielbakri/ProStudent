@@ -9,6 +9,12 @@ import { db, storage } from "../backend/firebase";
 import "./CoursBar.css";
 import store from "./../backend/store";
 import useWindowDimensions from "../backend/useWindowDimensions ";
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from "react-share";
 const CoursBar = ({ doc, code, isTeacher = true, classid }) => {
   const [RandomCode, setRandomCode] = useState("");
   //eslint-disable-next-line
@@ -172,6 +178,18 @@ const CoursBar = ({ doc, code, isTeacher = true, classid }) => {
           </Tooltip>
         </>
       )}
+      <Tooltip title={"Share on Facebook"} placement="top-start">
+        <FacebookShareButton
+          url={`https://prostudent.ga/student/${RandomCode}`}
+          children={<FacebookIcon size={25} round={true} />}
+        />
+      </Tooltip>
+      <Tooltip title={"Share on Whatsapp"} placement="top-start">
+        <WhatsappShareButton
+          url={`https://prostudent.ga/student/${RandomCode}`}
+          children={<WhatsappIcon size={25} round={true} />}
+        />
+      </Tooltip>
       <div className="Courses_separator" />
       <span className="Courses__docsDateOfupload">{doc.data.dateOfUpload}</span>
     </div>

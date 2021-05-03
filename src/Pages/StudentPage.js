@@ -1,9 +1,16 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Courses from "../Components/Courses";
 import "./Studentpage.css";
+import { useParams } from "react-router-dom";
+
 function StudentPage() {
   const [code, setcode] = useState("");
+  let { Course_code } = useParams();
+  useEffect(() => {
+    if (Course_code) {
+      setcode(Course_code);
+    }
+  }, [Course_code]);
   return (
     <>
       <span className="FirstPage__login">
